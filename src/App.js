@@ -1,28 +1,34 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import useInputState from './useInputState';
 
-class App extends Component {
-  render() {
+
+const App = () => {
+  const { reset, onChange, value } = useInputState();
+  const [count, setCount] = useState(0)
+  const [name, setName] = useState('');
+  const [things, setThing] = useState([])
+
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+       <p>You clicked {count} times</p>
+       <input
+        placeholder="Enter Name"
+        onChange={onChange}
+        value={value}
+       />
+       <button onClick={() => {
+        setThing([...things, value]);
+        reset();
+      }}>
+        click
+       </button>
+       {
+        things.map((name, index) => <h3 key={index}>{name}</h3>)
+       }
       </div>
     );
-  }
 }
 
 export default App;
