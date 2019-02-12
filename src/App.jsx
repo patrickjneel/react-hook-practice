@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import useInputState from './useInputState';
+import CardContainer from './CardContainer';
 
 
 const App = () => {
@@ -26,6 +27,7 @@ const App = () => {
        {
         things.map((name, index) => <h3 key={index}>{name}</h3>)
        }
+       <CardContainer />
       </div>
     );
 }
